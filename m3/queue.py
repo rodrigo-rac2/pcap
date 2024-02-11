@@ -31,3 +31,19 @@ try:
         print(que.get())
 except:
     print("Queue error")
+
+
+class SuperQueue(Queue):
+    def isempty(self):
+        return len(self._Queue__q) == 0
+
+
+que = SuperQueue()
+que.put(1)
+que.put("dog")
+que.put(False)
+for i in range(4):
+    if not que.isempty():
+        print(que.get())
+    else:
+        print("Queue empty")
