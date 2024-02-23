@@ -1,15 +1,27 @@
 class StudentsDataException(Exception):
-    pass
-
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+    
+    def __str__(self):
+        return f"Data Error: {self.message}"
 
 class BadLine(StudentsDataException):
-    # Write your code here.
-    pass
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f"Bad Line: {self.message}"
 
 
 class FileEmpty(StudentsDataException):
-    # Write your code here.
-    pass
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+    
+    def __str__(self):
+        return f"File is empty: {self.message}"
 
 
 def get_students(filename):
@@ -37,7 +49,7 @@ def get_students_name_points(filename, students):
                 if student == student_name:
                     points += float(line.split()[2])
         except:
-            raise FileEmpty
+            raise FileEmpty(f"{filename} is empty")
         students_dict[student] = points
     return students_dict
     

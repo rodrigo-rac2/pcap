@@ -35,8 +35,10 @@ try:
 			if ch.isalpha():
 				lettercount[ch.lower()] += 1
 	ordered_lettercount = sorted(lettercount.items(), key=lambda x: x[1], reverse=True)
-	for letter in ordered_lettercount:
-		if letter[1] != 0:
-			print(f"{letter[0]} -> {letter[1]}")
+	with open(f'{filename}.hist', 'wt') as file:
+		for letter in ordered_lettercount:
+			if letter[1] != 0:
+				file.write(f"{letter[0]} -> {letter[1]}\n")
+				print(f"{letter[0]} -> {letter[1]}")
 except IOError as e:
 	print("I/O error occurred: ", strerror(e.errno))
